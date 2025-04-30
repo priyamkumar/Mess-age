@@ -10,7 +10,7 @@ import { styled } from "@mui/system";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { ChatState } from "../Context/ChatProvider";
-import { getSender, getSenderFull } from "./ChatLogics";
+import { getSender, getSenderFull } from "./chatLogics";
 import ProfileModal from "./ProfileModal";
 import UpdateGroupModal from "./UpdateGroupModal";
 import Loader from "./Loader";

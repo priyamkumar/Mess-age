@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Badge } from "@mui/material";
 import { ChatState } from "../Context/ChatProvider";
-import { getSender } from "./ChatLogics";
+import { getSender } from "./chatLogics";
 
 export default function BasicMenu({markAsRead}) {
   const { user, notification, setNotification, setSelectedChat } = ChatState();
