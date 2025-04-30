@@ -18,6 +18,7 @@ import axios from "axios";
 import io from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "./typing.json";
+import { server } from "./main";
 
 const ScrollArea = styled(Box)(({ theme }) => ({
   overflowY: "auto",
@@ -78,7 +79,7 @@ export default function ChatSection({ fetchAgain, setFetchAgain, markAsRead }) {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/message/${chatId}`, config);
+      const { data } = await axios.get(`${server}/api/message/${chatId}`, config);
       setMessages(data);
       socket.emit("join chat", selectedChat._id);
     } catch (error) {
@@ -99,7 +100,7 @@ export default function ChatSection({ fetchAgain, setFetchAgain, markAsRead }) {
       };
       setNewMessage("");
       const { data } = await axios.post(
-        "/api/message/",
+        `${server}/api/message/`,
         {
           content: newMessage,
           chatId,

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import BasicMenu from "./Menu";
 import { useEffect } from "react";
 import axios from "axios";
+import { server } from "./main";
 
 export default function Header({markAsRead}) {
   const { user, setUser, notification, setNotification } = ChatState();
@@ -28,7 +29,7 @@ export default function Header({markAsRead}) {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/message/unseen`, config);
+      const { data } = await axios.get(`${server}/api/message/unseen`, config);
       setNotification(data);
     } catch (error) {
       console.log(error);

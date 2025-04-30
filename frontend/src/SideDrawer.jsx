@@ -10,6 +10,7 @@ import UserListItem from "./UserListItem";
 import axios from "axios";
 import { ChatState } from "../Context/ChatProvider";
 import Loader from "./Loader";
+import { server } from "./main";
 
 export default function SideDrawer() {
   const [open, setOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`${server}/api/user?search=${search}`, config);
       setSearchData(data);
       setLoading(false);
     } catch (error) {
@@ -62,7 +63,7 @@ export default function SideDrawer() {
         },
       };
       const { data } = await axios.post(
-        "/api/chat",
+        `${server}/api/chat`,
         {
           userId,
         },

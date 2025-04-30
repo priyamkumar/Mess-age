@@ -12,6 +12,7 @@ import { ChatState } from "../Context/ChatProvider";
 import toast from "react-hot-toast";
 import { getSender } from "./chatLogics";
 import GroupChatModal from "./GroupChatModal";
+import { server } from "./main";
 
 export default function Sidebar({ fetchAgain, setFetchAgain, markAsRead }) {
   const {
@@ -33,7 +34,7 @@ export default function Sidebar({ fetchAgain, setFetchAgain, markAsRead }) {
         },
       };
 
-      const { data } = await axios.get("/api/chat", config);
+      const { data } = await axios.get(`${server}/api/chat`, config);
       setChats(data);
     } catch (error) {
       toast.error("Error");

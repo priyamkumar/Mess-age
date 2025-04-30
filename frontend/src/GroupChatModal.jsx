@@ -5,6 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { ChatState } from "../Context/ChatProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { server } from "./main";
 
 export default function GroupChatModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function GroupChatModal() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`${server}/api/user?search=${search}`, config);
       setAllUsers(data);
       setLoading(false);
     } catch (error) {
@@ -63,7 +64,7 @@ export default function GroupChatModal() {
         },
       };
       const { data } = await axios.post(
-        "/api/chat/group",
+        `${server}/api/chat/group`,
         {
           name: groupName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

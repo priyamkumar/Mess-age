@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ChatState } from "../Context/ChatProvider";
 import toast from "react-hot-toast";
+import { server } from "./main";
 
 export default function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -41,7 +42,7 @@ export default function LoginForm() {
     if (isLogin) {
       try {
         const { data } = await axios.post(
-          "/api/user/login",
+          `${server}/api/user/login`,
           { email, password },
           config
         );
@@ -58,7 +59,7 @@ export default function LoginForm() {
     } else {
       try {
         const { data } = await axios.post(
-          "/api/user/",
+          `${server}/api/user/`,
           { name, email, password, confirmPassword },
           config
         );

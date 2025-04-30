@@ -5,6 +5,7 @@ import { useState } from "react";
 import Header from "./Header";
 import axios from "axios";
 import { ChatState } from "../Context/ChatProvider";
+import { server } from "./main";
 
 export default function ChatPage() {
   const [fetchAgain, setFetchAgain] = useState(false);
@@ -17,7 +18,7 @@ const {user} = ChatState();
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.put(`/api/message/${chatId}`, {}, config);
+      const { data } = await axios.put(`${server}/api/message/${chatId}`, {}, config);
     } catch (error) {
       console.log(error);
     }

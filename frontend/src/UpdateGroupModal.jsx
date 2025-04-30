@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { ChatState } from "../Context/ChatProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { server } from "./main";
 
 export default function UpdateGroupChatModal({ fetchAgain, setFetchAgain }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +24,7 @@ export default function UpdateGroupChatModal({ fetchAgain, setFetchAgain }) {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`${server}/api/user?search=${search}`, config);
       setAllUsers(data);
       setLoading(false);
     } catch (error) {
@@ -52,7 +53,7 @@ export default function UpdateGroupChatModal({ fetchAgain, setFetchAgain }) {
         },
       };
       const { data } = await axios.put(
-        `/api/chat/add`,
+        `${server}/api/chat/add`,
         {
           chatId: selectedChat._id,
           userId: addUser._id,
@@ -83,7 +84,7 @@ export default function UpdateGroupChatModal({ fetchAgain, setFetchAgain }) {
         },
       };
       const { data } = await axios.put(
-        `/api/chat/remove`,
+        `${server}/api/chat/remove`,
         {
           chatId: selectedChat._id,
           userId,
@@ -110,7 +111,7 @@ export default function UpdateGroupChatModal({ fetchAgain, setFetchAgain }) {
         },
       };
       const { data } = await axios.put(
-        `/api/chat/rename`,
+        `${server}/api/chat/rename`,
         {
           chatId: selectedChat._id,
           chatName: groupName,

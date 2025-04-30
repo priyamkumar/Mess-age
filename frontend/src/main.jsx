@@ -8,6 +8,7 @@ import ChatPage from "./ChatPage.jsx";
 import ChatProvider from "../Context/ChatProvider.jsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+export const server = "https://mess-age.vercel.app"
 const theme = createTheme();
 
 const router = createBrowserRouter([
