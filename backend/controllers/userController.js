@@ -51,11 +51,12 @@ const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      createdAt: user.createdAt,
       token: generateToken(user._id),
     });
   } else {
     res.status(400);
-    throw new Error("Failed to create the user.");
+    throw new Error("Invalid email or password.");
   }
 });
 
