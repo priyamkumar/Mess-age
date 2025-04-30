@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import { ChatState } from "../Context/ChatProvider";
 import toast from "react-hot-toast";
-import { getSender } from "./ChatLogics";
+import { getSender } from "./chatLogics";
 import GroupChatModal from "./GroupChatModal";
 
 export default function Sidebar({ fetchAgain, setFetchAgain, markAsRead }) {
