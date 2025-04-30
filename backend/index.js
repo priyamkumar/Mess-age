@@ -1,7 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDb = require("./utils/connectDb");
-const chats = require("./data");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 dotenv.config();
@@ -17,11 +16,6 @@ app.get("/", (req, res) => {
     success: true,
     message: "Working",
   });
-});
-
-app.get("/api/chat/:id", (req, res) => {
-  const singleChat = chats.find((c) => c._id === req.params.id);
-  res.send(singleChat);
 });
 
 app.use("/api/user", require("./routes/userRoutes"));
