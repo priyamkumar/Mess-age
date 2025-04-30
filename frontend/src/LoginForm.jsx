@@ -2,12 +2,15 @@ import { useState } from "react";
 import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ChatState } from "../Context/ChatProvider";
+import toast from "react-hot-toast";
 
 export default function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { setUser } = ChatState();
 
   const navigateTo = useNavigate();
 
@@ -42,11 +45,15 @@ export default function LoginForm() {
           { email, password },
           config
         );
+
+        setUser(data);
+        localStorage.setItem("userInfo", JSON.stringify(data));
         setLoading(false);
         navigateTo("/chats");
       } catch (err) {
         setLoading(false);
         console.log(err);
+        toast.error(err.response.data.message)
       }
     } else {
       try {

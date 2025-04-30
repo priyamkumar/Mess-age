@@ -5,11 +5,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from "./Error.jsx";
 import Home from "./Home.jsx";
 import ChatPage from "./ChatPage.jsx";
+import ChatProvider from "../Context/ChatProvider.jsx";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const theme = createTheme();
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <ChatProvider>
+        <App />
+      </ChatProvider>
+    ),
     errorElement: <Error />,
     children: [
       {
@@ -26,8 +34,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-      <RouterProvider router={router}>
-        <App />
-      </RouterProvider>
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router}></RouterProvider>
+    </ThemeProvider>
   </StrictMode>
 );
