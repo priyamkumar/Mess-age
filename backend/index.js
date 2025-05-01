@@ -42,7 +42,7 @@ const server = app.listen(PORT, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://mess-age-qnwe.vercel.app",
+    origin: [process.env.FRONTEND_URL, "http://localhost:5173"],
   },
 });
 
