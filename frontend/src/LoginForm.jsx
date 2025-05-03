@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { User, Mail, Lock, Eye, EyeOff} from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ChatState } from "../Context/ChatProvider";
 import toast from "react-hot-toast";
 import { server } from "./main";
 import Loader from "./Loader";
+import { Box } from "@mui/material";
 
 export default function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -93,7 +94,14 @@ export default function LoginForm() {
   };
 
   return loading ? (
-    <Loader />
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      height="100vh"
+    >
+      <Loader />{" "}
+    </Box>
   ) : (
     <div className="flex items-center justify-center min-h-screen bg-transparent-100">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
@@ -248,6 +256,7 @@ export default function LoginForm() {
             </button>
             {isLogin && (
               <button
+                disabled={loading}
                 onClick={handleGuest}
                 className="mt-4 flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 cursor-pointer"
               >
