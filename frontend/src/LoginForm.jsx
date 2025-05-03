@@ -51,10 +51,11 @@ export default function LoginForm() {
         localStorage.setItem("userInfo", JSON.stringify(data));
         setLoading(false);
         navigateTo("/chats");
+        toast.success("Logged In");
       } catch (err) {
         setLoading(false);
         console.log(err);
-        toast.error(err.response.data.message)
+        toast.error(err.response.data.message);
       }
     } else {
       try {
@@ -64,6 +65,9 @@ export default function LoginForm() {
           config
         );
         setLoading(false);
+        toggleView();
+        toast.success("Account Created");
+        
       } catch (err) {
         setLoading(false);
         console.log(err);
@@ -80,6 +84,13 @@ export default function LoginForm() {
       confirmPassword: "",
     });
   };
+
+  const handleGuest = () => {
+    setFormData({
+      email: "guestlogin@gmail.com",
+      password: "12345",
+    });
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-transparent-100">
@@ -177,9 +188,9 @@ export default function LoginForm() {
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
-                  <EyeOff size={18} className="text-gray-400" />
+                  <EyeOff size={18} className="text-gray-400 cursor-pointer" />
                 ) : (
-                  <Eye size={18} className="text-gray-400" />
+                  <Eye size={18} className="text-gray-400 cursor-pointer" />
                 )}
               </button>
             </div>
@@ -214,9 +225,12 @@ export default function LoginForm() {
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
                   {showConfirmPassword ? (
-                    <EyeOff size={18} className="text-gray-400" />
+                    <EyeOff
+                      size={18}
+                      className="text-gray-400 cursor-pointer"
+                    />
                   ) : (
-                    <Eye size={18} className="text-gray-400" />
+                    <Eye size={18} className="text-gray-400 cursor-pointer" />
                   )}
                 </button>
               </div>
@@ -226,10 +240,18 @@ export default function LoginForm() {
           <div>
             <button
               type="submit"
-              className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer"
             >
               {isLogin ? "Sign In" : "Create Account"}
             </button>
+            {isLogin && (
+              <button
+                onClick={handleGuest}
+                className="mt-4 flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 cursor-pointer"
+              >
+                Guest Login
+              </button>
+            )}
           </div>
         </form>
 
@@ -238,7 +260,7 @@ export default function LoginForm() {
             {isLogin ? "Don't have an account?" : "Already have an account?"}
             <button
               type="button"
-              className="ml-1 font-medium text-blue-600 hover:text-blue-500"
+              className="ml-1 font-medium text-blue-600 hover:text-blue-500 cursor-pointer"
               onClick={toggleView}
             >
               {isLogin ? "Sign up" : "Log in"}

@@ -29,7 +29,7 @@ const ScrollArea = styled(Box)(({ theme }) => ({
   flexDirection: "column",
 }));
 
-const ENDPOINT = "https://mess-age.onrender.com";
+const ENDPOINT = "http://localhost:5001";
 let socket, selectedChatCompare;
 
 export default function ChatSection({ fetchAgain, setFetchAgain, markAsRead }) {

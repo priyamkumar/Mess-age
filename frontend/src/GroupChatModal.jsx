@@ -149,7 +149,7 @@ export default function GroupChatModal() {
                     onClick={() => handleRemoveUser(user.id)}
                     className="text-gray-500 hover:text-red-500"
                   >
-                    <X size={16} />
+                    <X size={16} className="cursor-pointer"/>
                   </button>
                 </div>
               ))}

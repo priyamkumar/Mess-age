@@ -199,7 +199,7 @@ export default function UpdateGroupChatModal({ fetchAgain, setFetchAgain }) {
                     onClick={() => handleRemoveUser(user._id)}
                     className="text-gray-500 hover:text-red-500"
                   >
-                    <X size={16} />
+                    <X size={16} className="cursor-pointer"/>
                   </button>
                 </div>
               ))}

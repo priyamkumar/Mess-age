@@ -12,14 +12,17 @@ import BasicMenu from "./Menu";
 import { useEffect } from "react";
 import axios from "axios";
 import { server } from "./main";
+import toast from "react-hot-toast";
 
 export default function Header({markAsRead}) {
-  const { user, setUser, notification, setNotification } = ChatState();
+  const { user, setUser, notification, setNotification, setSelectedChat } = ChatState();
   const navigateTo = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("userInfo");
     setUser(null);
+    setSelectedChat(null)
     navigateTo("/");
+    toast.success("Logged Out");
   };
 
   const fetchNotifications = async () => {

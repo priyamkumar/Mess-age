@@ -48,7 +48,7 @@ export default function BasicMenu({markAsRead}) {
                 onClick={() => {
                   markAsRead(noti.chat)
                   setSelectedChat(noti.chat);
-                  setNotification(notification.filter((n) => n !== noti));
+                  setNotification(notification.filter((n) => n.chat._id !== noti.chat._id));
                   handleClose();
                 }}
               >
