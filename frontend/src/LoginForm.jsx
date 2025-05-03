@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff} from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ChatState } from "../Context/ChatProvider";
 import toast from "react-hot-toast";
 import { server } from "./main";
+import Loader from "./Loader";
 
 export default function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -67,7 +68,6 @@ export default function LoginForm() {
         setLoading(false);
         toggleView();
         toast.success("Account Created");
-        
       } catch (err) {
         setLoading(false);
         console.log(err);
@@ -90,9 +90,11 @@ export default function LoginForm() {
       email: "guestlogin@gmail.com",
       password: "12345",
     });
-  }
+  };
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="flex items-center justify-center min-h-screen bg-transparent-100">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <h3 className="text-4xl font-bold underline flex items-center justify-center">

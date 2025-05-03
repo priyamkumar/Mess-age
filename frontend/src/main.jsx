@@ -8,7 +8,7 @@ import ChatPage from "./ChatPage.jsx";
 import ChatProvider from "../Context/ChatProvider.jsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-export const server = "http://localhost:5001"
+export const server = "https://mess-age.onrender.com"
 const theme = createTheme();
 
 const router = createBrowserRouter([
